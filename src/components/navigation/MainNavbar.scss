@@ -1,0 +1,38 @@
+.main-navbar {
+  position: sticky;
+  top: 0;
+
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--light-blue);
+  border: 1px solid var(--dark-blue);
+
+  ul {
+    display: flex;
+    flex-flow: row;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: flex;
+    flex-flow: row;
+    align-content: center;
+    list-style: none;
+  }
+
+  a {
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--off-white);
+  }
+  a:hover {
+    background-color: var(--off-black);
+    text-decoration: underline;
+  }
+
+  .active {
+    background-color: var(--off-black);
+    text-decoration: underline;
+  }
+}

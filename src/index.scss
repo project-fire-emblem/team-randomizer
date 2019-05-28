@@ -1,0 +1,21 @@
+:root {
+  font-size: 16px;
+  font-family: sans-serif;
+
+  --off-white: #f0f8f6;
+  --off-black: #272727;
+  --light-blue: #3399ff;
+  --dark-blue: #00008b;
+
+  --character-card-width: 10rem;
+}
+
+div,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+// The rest of the styling will be done in the components.
+
+// I am attempting to use the BEM style guide for component styling.
