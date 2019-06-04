@@ -26,13 +26,13 @@
     text-decoration: none;
     color: var(--off-white);
   }
-  a:hover {
+
+  a.active {
     background-color: var(--off-black);
     text-decoration: underline;
   }
 
-  .active {
-    background-color: var(--off-black);
+  a:hover {
     text-decoration: underline;
   }
 }

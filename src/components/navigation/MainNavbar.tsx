@@ -3,7 +3,11 @@ import { NavLink } from 'react-router-dom';
 
 import './MainNavbar.scss';
 
-const MainNavbar: React.FC = props => {
+interface MainNavbarProps {
+  isAuth: boolean;
+}
+
+const MainNavbar: React.FC<MainNavbarProps> = ({ isAuth }) => {
   return (
     <nav className="main-navbar">
       <ul>
@@ -12,18 +16,20 @@ const MainNavbar: React.FC = props => {
             Home
           </NavLink>
         </li>
-        <li>
-          <NavLink activeClassName="active" to="/auth">
-            Login/Signup
-          </NavLink>
-        </li>
-        <li>
-          <NavLink activeClassName="active" to="/team-randomizer">
-            Team Randomizer
-          </NavLink>
-        </li>
+        {isAuth && (
+          <li>
+            <NavLink activeClassName="active" to="/teams">
+              Teams
+            </NavLink>
+          </li>
+        )}
       </ul>
       <ul>
+        <li>
+          <NavLink activeClassName="active" to="/account">
+            Account
+          </NavLink>
+        </li>
         <li>
           <a href="https://github.com/project-fire-emblem/team-randomizer">GitHub &#62;</a>
         </li>

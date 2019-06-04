@@ -1,0 +1,56 @@
+.auth-form-container {
+  display: flex;
+  flex-flow: column;
+  align-content: center;
+  margin: 1rem auto;
+  max-width: 25rem;
+  overflow: hidden;
+
+  color: var(--off-white);
+  border: 2px solid var(--light-blue);
+  border-radius: 15px;
+
+  .auth-form-container__options {
+    display: flex;
+    align-content: center;
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    margin: 1rem 1rem 0 1rem;
+    width: 80%;
+  }
+  .auth-form-container__button {
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+  }
+}
+
+.login-form,
+.signup-form {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: 1rem;
+  padding: 0.5rem;
+
+  input {
+    width: 100%;
+    padding-left: 0.5rem;
+    border: 0;
+    border-bottom: 1px solid var(--light-blue);
+    margin: 10px 10px 9px 10px; // Complements the border
+    line-height: 2rem;
+
+    outline: none;
+  }
+
+  input:focus {
+    margin: 9px;
+    border: 1px solid var(--light-blue);
+    border-radius: 5px;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    width: 10rem;
+    margin-top: 1rem;
+  }
+}

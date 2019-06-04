@@ -2,18 +2,53 @@
   font-size: 16px;
   font-family: sans-serif;
 
+  // Grey Scale
   --off-white: #f0f8f6;
+  --grey: #646464;
   --off-black: #272727;
+
+  // Color scale
   --light-blue: #3399ff;
   --dark-blue: #00008b;
 
   --character-card-width: 10rem;
 }
 
+// TODO: Look into if this is necessary;
+* {
+  font-size: 16px;
+}
+
 div,
 body {
   margin: 0;
   padding: 0;
+}
+
+a:hover {
+  color: var(--off-white);
+  background-color: var(--grey);
+  text-decoration: underline;
+}
+
+button {
+  color: var(--off-white);
+  background: var(--light-blue);
+  border: 1px solid var(--dark-blue);
+  border-radius: 5px;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:active {
+  background: var(--grey);
+}
+
+.active {
+  background-color: var(--off-black);
+  text-decoration: underline;
 }
 
 // The rest of the styling will be done in the components.
