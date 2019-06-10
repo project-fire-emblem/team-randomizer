@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Character } from '../../interfaces/Model.interface';
+import { Character } from '../interfaces/Model.interface';
 
-import './CharacterCard.scss';
+import '../styles/CharacterCard.scss';
 
 const CharacterCard: React.FC<Character> = ({ name, title, origin }) => {
   return (

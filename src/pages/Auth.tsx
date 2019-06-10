@@ -1,23 +1,14 @@
 import React, { Component } from 'react';
 
 import PageLayout from '../layouts/PageLayout';
-import { AuthForm } from '../components/forms/AuthForm';
+import AuthForm from '../containers/AuthForm';
 import { RouteComponentProps } from 'react-router';
 
-interface AuthProps extends RouteComponentProps<{}> {
-  loginHandler: Function;
-  logoutHandler: Function;
-}
-
-export class Auth extends Component<AuthProps, {}> {
-  private loginHandler = (token: string) => {
-    this.props.loginHandler(token);
-    this.props.history.push('/teams');
-  };
+export class Auth extends Component<RouteComponentProps, {}> {
   public render() {
     return (
       <PageLayout>
-        <AuthForm loginHandler={this.loginHandler} logoutHandler={this.props.logoutHandler} />
+        <AuthForm {...this.props} />
       </PageLayout>
     );
   }

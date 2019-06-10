@@ -2,6 +2,7 @@ import React from 'react';
 
 const MainReferences = () => {
   return (
+    // FIXME: Needs some work.
     <nav className="main-navbar">
       <ul>
         <li>

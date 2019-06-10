@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './MainNavbar.scss';
+import '../../styles/MainNavbar.scss';
 
 interface MainNavbarProps {
   isAuth: boolean;
