@@ -6,6 +6,7 @@ export enum AuthActionTypes {
   LOGIN = 'LOGIN',
   LOCAL_STORAGE_LOGIN = 'LOCAL_STORAGE_LOGIN',
   LOGOUT = 'LOGOUT',
+  DEFAULT = 'DEFAULT',
 }
 
 // add a card (action creator)
@@ -14,24 +15,28 @@ export interface LoginAction {
 }
 
 export interface LocalStorageLoginAction {
-  type: AuthActionTypes.LOCAL_STORAGE_LOGIN;
+  type: AuthActionTypes.LOCAL_STORAGE_LOGIN | AuthActionTypes.DEFAULT;
 }
 
 export interface LogoutAction {
   type: AuthActionTypes.LOGOUT;
 }
 
+export interface Default {
+  type: AuthActionTypes.DEFAULT;
+}
+
 // All interfaces in one action type
-export type AuthActions = LoginAction | LocalStorageLoginAction | LogoutAction;
+export type AuthActions = LoginAction | LocalStorageLoginAction | LogoutAction | Default;
 
 export const login = (): LoginAction => {
-  console.log('object');
+  console.log('login');
   return {
     type: AuthActionTypes.LOGIN,
   };
 };
 
-export const localStorageLogin = (): LocalStorageLoginAction | {} => {
+export const localStorageLogin = (): LocalStorageLoginAction => {
   let key = 'feAppToken';
   let token = localStorage.getItem(key);
   if (token == null) {
@@ -49,11 +54,15 @@ export const localStorageLogin = (): LocalStorageLoginAction | {} => {
     localStorage.removeItem(key);
   }
   // send back an empty action because nothing was found.
-  return {};
+  return {
+    type: AuthActionTypes.DEFAULT,
+  };
 };
 
 export const logout = (): LogoutAction => {
-  console.log('object');
+  console.log('logout');
+  let key = 'feAppToken';
+  localStorage.removeItem(key);
   return {
     type: AuthActionTypes.LOGOUT,
   };

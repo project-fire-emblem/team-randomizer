@@ -25,6 +25,7 @@ export const authReducer: Reducer<AuthState, AuthActions> = (state = initialAuth
         ...state,
         isAuthenticated: false,
       };
+    case AuthActionTypes.DEFAULT:
     default:
       return state;
   }

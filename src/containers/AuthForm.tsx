@@ -1,9 +1,9 @@
-import React, { Component, ReactElement } from 'react';
+import React, { Component, ReactNode } from 'react';
 import { RouteComponentProps } from 'react-router';
 
 // Redux
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { StoreState } from '../store';
 import { login, logout, AuthActions } from '../store/actions/authActions';
 
 import { validateToken } from '../helpers/jwt';
@@ -14,16 +14,19 @@ import SignupForm from '../components/forms/SignupForm';
 import '../styles/AuthForm.scss';
 
 interface AuthFormState {
-  currentForm: ReactElement;
+  currentForm: ReactNode;
 }
 
-interface AuthFormProps extends RouteComponentProps<{}> {
+interface DispatchProps {
   login: () => AuthActions;
   logout: () => AuthActions;
 }
 
+interface AuthFormProps extends RouteComponentProps<{}>, DispatchProps {}
+
 class AuthForm extends Component<AuthFormProps, AuthFormState> {
   private loginHandler = (token: string) => {
+    const { history, login, logout } = this.props;
     let key = 'feAppToken';
     if (validateToken(token)) {
       localStorage.setItem(key, token);
@@ -32,22 +35,21 @@ class AuthForm extends Component<AuthFormProps, AuthFormState> {
       // set the isAuthenticated to true
 
       login();
-      // FIXME: This seems a little sketchy to put here.
-      this.props.history.push('/teams');
+      history.push('/teams'); // FIXME: This seems a little sketchy to put here.
     } else {
       logout();
     }
   };
 
   private logoutHandler = () => {
-    logout();
+    this.props.logout();
     this.props.history.push('/');
   };
 
   private loginForm = <LoginForm loginHandler={this.loginHandler} />;
   private signupForm = <SignupForm />;
 
-  private updateCurrentForm = (form: ReactElement) => {
+  private updateCurrentForm = (form: ReactNode) => {
     this.setState({ currentForm: form });
   };
 
@@ -83,13 +85,17 @@ class AuthForm extends Component<AuthFormProps, AuthFormState> {
   }
 }
 
-const mapStateToProps = (store: StoreState) => {
-  return {
-    isAuthenticated: store.authState.isAuthenticated,
-  };
-};
+const mapDispatchToProps = (dispatch: any): DispatchProps => ({
+  ...bindActionCreators(
+    {
+      login,
+      logout,
+    },
+    dispatch,
+  ),
+});
 
 export default connect(
-  mapStateToProps,
-  { login, logout },
+  null,
+  mapDispatchToProps,
 )(AuthForm);
